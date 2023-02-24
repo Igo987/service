@@ -242,14 +242,14 @@ func createVoice(url string, arr []string) ([]models.VoiceCall, error) {
 			if filterFromProviders(record[3], arr) {
 				for i := 0; i <= 7; i++ {
 					item.Country = record[0]
-					item.Load, _ = strconv.Atoi(record[1])
+					item.Bandwidth = record[1]
 					item.ResponseTime, _ = strconv.Atoi(record[2])
 					item.Provider = record[3]
 					value, _ := strconv.ParseFloat(record[4], 32)
-					item.Connection_Stability = float32(value)
+					item.ConnectionStability = float32(value)
 					item.TTFB, _ = strconv.Atoi(record[5])
-					item.Purity_Of_Communication, _ = strconv.Atoi(record[6])
-					item.Median, _ = strconv.Atoi(record[7])
+					item.VoicePurity, _ = strconv.Atoi(record[6])
+					item.MedianOfCallsTime, _ = strconv.Atoi(record[7])
 				}
 			}
 
@@ -572,4 +572,6 @@ func main() {
 		done <- true
 	}()
 	<-done
+	dev, _ := getResultData()
+	fmt.Println(dev.VoiceCall)
 }

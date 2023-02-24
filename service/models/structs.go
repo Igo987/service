@@ -21,14 +21,14 @@ type MMSData struct { // СТРУКТУРА SMS она же и MMS
 }
 
 type VoiceCall struct { // СТРУКТУРА VoiceCall
-	Country                 string  `json:"country"`
-	Load                    int     `json:"load"`
-	ResponseTime            int     `json:"response_time"`
-	Provider                string  `json:"provider"`
-	Connection_Stability    float32 `json:"coonection_stability"`
-	TTFB                    int     `json:"ttfb"`
-	Purity_Of_Communication int     `json:"purity_of_communication"`
-	Median                  int     `json:"median"`
+	Country             string  `json:"country"`
+	Bandwidth           string  `json:"bandwidth"`
+	ResponseTime        int     `json:"response_time"`
+	Provider            string  `json:"provider"`
+	ConnectionStability float32 `json:"connection_stability"`
+	TTFB                int     `json:"ttfb"`
+	VoicePurity         int     `json:"voice_purity"`
+	MedianOfCallsTime   int     `json:"median_of_calls_time"`
 }
 
 type EmailData struct {
@@ -75,15 +75,5 @@ type ResultT struct {
 	Data   *ResultSetT `json:"data"`   // Заполнен, если все этапы сбора  данных прошли успешно, nil во всех остальных случаях
 	Error  string      `json:"error"`  // Пустая строка, если все этапы сбора данных прошли успешно, в случае ошибки заполнено текстом ошибки
 }
-
-// type ResultSetT struct {
-// 	SMS       [][]SMSData              `json:"sms"`
-// 	MMS       [][]MMSData              `json:"mms"`
-// 	VoiceCall VoiceCallData            `json:"voice_call"`
-// 	Email     map[string][][]EmailData `json:"email"`
-// 	Billing   BillingData              `json:"billing"`
-// 	Support   []int                    `json:"support"`
-// 	Incidents []IncidentData           `json:"incident"`
-// }
 
 type ResultEmail map[string][][]EmailData
